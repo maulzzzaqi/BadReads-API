@@ -15,9 +15,9 @@ class BookController extends Controller
         return BookResource::collection($book);
     }
 
-    public function detail(){
-        $book = Book::all();
-        return BookDetailResource::collection($book);
+    public function detail($id){
+        $book = Book::findOrFail($id);
+        return new BookDetailResource($book);
     }
 
 }
