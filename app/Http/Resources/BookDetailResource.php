@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BookResource extends JsonResource
+class BookDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,11 @@ class BookResource extends JsonResource
         // return parent::toArray($request);
 
         return [
-            'id' => $this->id,
             'Book Title' => $this->book_title,
+            'Synopsis' => $this->book_synopsis,
             'Author' => $this->book_author,
             'Year Published' => $this->year_published,
+            'isbn' => $this->isbn,
         ];
-
     }
 }
