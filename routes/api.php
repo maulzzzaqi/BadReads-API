@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/booklist', [BookController::class, 'index']);
-Route::get('/book/{id}', [BookController::class, 'detail']);
+Route::get('/booklist', [BookController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/book/{id}', [BookController::class, 'detail'])->middleware(['auth:sanctum']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
