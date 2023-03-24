@@ -22,3 +22,4 @@ Route::post('/login', [AuthController::class, 'login']); // Login to an account
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']); // Log out from an account
 Route::get('/account', [AuthController::class, 'accountDetail'])->middleware(['auth:sanctum']); // Show Account Detail
 Route::post('/book', [BookController::class, 'addBook'])->middleware(['auth:sanctum', 'admin']); // Add Book to Database (Admin only)
+Route::patch('/book/{id}', [BookController::class, 'update'])->middleware(['auth:sanctum', 'admin']);

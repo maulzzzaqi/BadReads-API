@@ -34,4 +34,19 @@ class BookController extends Controller
 
     }
 
+    public function update(Request $request, $id){
+        $request -> validate([
+            'book_title' => 'required',
+            'book_synopsis' => 'required',
+            'book_author' => 'required',
+            'year_published' => 'required',
+            'isbn' => 'required',
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->update($request->all());
+        return new BookDetailResource($book);
+
+    }
+
 }
