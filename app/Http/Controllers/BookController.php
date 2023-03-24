@@ -20,6 +20,23 @@ class BookController extends Controller
         return new BookDetailResource($book);
     }
 
+    public function search(Request $request){
+        $searchQuery = $request->input('query');
+
+        $books = Book::where('book_title', 'like', '%'.$searchQuery.'%')
+                    ->orWhere('book_author', 'like', '%'.$searchQuery.'%')
+                    ->get();
+        
+        if ($books->isEmpty()){
+            return response()->json([
+                'error' => 'No books found', 404
+            ]);
+        }
+
+        return response()->json($books);
+
+    }
+
     public function addBook(Request $request){
         $request -> validate([
             'book_title' => 'required',
