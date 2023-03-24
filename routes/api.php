@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/booklist', [BookController::class, 'index']);
 Route::get('/book/{id}', [BookController::class, 'detail']);
+Route::post('/login', [AuthController::class, 'login']);
