@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/booklist', [BookController::class, 'index'])->middleware(['auth:sanctum']);
-Route::get('/book/{id}', [BookController::class, 'detail'])->middleware(['auth:sanctum']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
-Route::get('/account', [AuthController::class, 'accountDetail'])->middleware(['auth:sanctum']);
+Route::get('/book', [BookController::class, 'index'])->middleware(['auth:sanctum']); // Show Book List
+Route::get('/book/{id}', [BookController::class, 'detail'])->middleware(['auth:sanctum']); // Show Book Detail
+Route::post('/login', [AuthController::class, 'login']); // Login to an account
+Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']); // Log out from an account
+Route::get('/account', [AuthController::class, 'accountDetail'])->middleware(['auth:sanctum']); // Show Account Detail
+Route::post('/book', [BookController::class, 'addBook'])->middleware(['auth:sanctum', 'admin']); // Add Book to Database (Admin only)

@@ -20,4 +20,18 @@ class BookController extends Controller
         return new BookDetailResource($book);
     }
 
+    public function addBook(Request $request){
+        $request -> validate([
+            'book_title' => 'required',
+            'book_synopsis' => 'required',
+            'book_author' => 'required',
+            'year_published' => 'required',
+            'isbn' => 'required',
+        ]);
+
+        $book = Book::create($request->all());
+        return new BookDetailResource($book);
+
+    }
+
 }
