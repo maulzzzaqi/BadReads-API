@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -33,6 +34,11 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Logged out successfully!'
         ]);
+    }
+
+    public function accountDetail(Request $request){
+        $user = Auth::user();
+        return response()->json($user);
     }
 
 }

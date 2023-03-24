@@ -20,3 +20,4 @@ Route::get('/booklist', [BookController::class, 'index'])->middleware(['auth:san
 Route::get('/book/{id}', [BookController::class, 'detail'])->middleware(['auth:sanctum']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
+Route::get('/account', [AuthController::class, 'accountDetail'])->middleware(['auth:sanctum']);
