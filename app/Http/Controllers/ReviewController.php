@@ -35,5 +35,13 @@ class ReviewController extends Controller
         return new ReviewResource($review->loadMissing('reviewer:id,username'));
 
     }
+    
+    public function delete($id){
+        $review = Review::findOrFail($id);
+        $review->delete();
+
+        return new ReviewResource($review->loadMissing(['reviewer:id,username']));
+
+    }
 
 }

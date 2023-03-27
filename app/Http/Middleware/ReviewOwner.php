@@ -20,9 +20,9 @@ class ReviewOwner
         $user = Auth::user();
         $review = Review::findOrFail($request->id);
 
-        if ($review->user_id != $user->id){
+        if ($review->user_id != $user->id) {
             return response()->json([
-                'message' => 'You are not authorized to edit this review',
+                'message' => 'error',
             ], 404);
         }
 

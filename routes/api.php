@@ -32,4 +32,5 @@ Route::get('/account', [AuthController::class, 'accountDetail'])->middleware(['a
 
 // Review Route Things
 Route::post('/review', [ReviewController::class, 'store'])->middleware(['auth:sanctum']);
-Route::patch('/review/{id}', [ReviewController::class, 'update'])->middleware('review.owner');
+Route::patch('/review/{id}', [ReviewController::class, 'update'])->middleware(['review.owner']);
+Route::delete('/review/{id}', [ReviewController::class, 'delete'])->middleware(['review.owner']);
