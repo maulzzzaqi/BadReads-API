@@ -23,4 +23,17 @@ class ReviewController extends Controller
         return new ReviewResource($review->loadMissing(['reviewer:id,username']));
 
     }
+
+    public function update(Request $request ,$id){
+        $request->validate([
+            'review_content' => 'required',
+        ]);
+
+        $review = Review::findOrFail($id);
+        $review->update($request->only('review_content'));
+
+        return new ReviewResource($review->loadMissing('reviewer:id,username'));
+
+    }
+
 }
