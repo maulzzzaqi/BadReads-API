@@ -12,7 +12,7 @@ class BookController extends Controller
     public function index(){
         $book = Book::all();
         // return response()->json($book);
-        return BookResource::collection($book);
+        return BookResource::collection($book->loadMissing('reviewer'));
     }
 
     public function detail($id){
