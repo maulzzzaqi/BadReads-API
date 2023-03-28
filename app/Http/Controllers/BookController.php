@@ -12,11 +12,11 @@ class BookController extends Controller
     public function index(){
         $book = Book::all();
         // return response()->json($book);
-        return BookResource::collection($book->loadMissing('reviewer'));
+        return BookResource::collection($book->loadMissing('reviews'));
     }
 
     public function detail($id){
-        $book = Book::findOrFail($id);
+        $book = Book::with('reviews:id,user_id,review_content')->findOrFail($id);
         return new BookDetailResource($book);
     }
 

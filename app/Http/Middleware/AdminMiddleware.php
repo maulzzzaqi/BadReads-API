@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Book;
 use App\Models\Review;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
@@ -16,15 +18,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $reviewId = $request->route('review');
-        $review = Review::find($reviewId);
-    
-        if (!$review) {
-            return abort(404);
-        }
-    
-        if ($review->user_id !== auth()->user()->id) {
-            abort(403, 'Unauthorized action.');
+        $currentUser = Auth::user();
+
+        if ($currentUser -> is_admin !== 1) {
+            return response()->json([
+                'message' => 'You are not allowed to edit this!',
+            ], 404);
         }
     
         return $next($request);

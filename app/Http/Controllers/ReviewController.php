@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ReviewResource;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -14,7 +15,7 @@ class ReviewController extends Controller
             'review_content' => 'required',
         ]);
 
-        $request['user_id'] = auth()->user()->id;
+        $request['user_id'] = Auth::user()->id;
 
         $review = Review::create($request->all());
 

@@ -21,6 +21,9 @@ class BookResource extends JsonResource
             'Book Title' => $this->book_title,
             'Author' => $this->book_author,
             'Year Published' => $this->year_published,
+            'reviews' => $this->whenLoaded('reviews', function(){
+                return count($this->reviews);
+            }),
         ];
 
     }
